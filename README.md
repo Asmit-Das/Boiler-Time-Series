@@ -2,7 +2,7 @@
 
 A machine learning web app for time-series prediction of **boiler output steam temperature** (`TE_8332A.AV_0#`) using industrial sensor data.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://boiler-time-series-5pq2bxnvjhbmgbstuexc6d.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://boiler-time-series-5pq2bxnvjhbmgbstuexc6d.streamlit.app))
 
 ---
 
@@ -45,10 +45,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-<<<<<<< HEAD
-Then upload your `data.csv` in the sidebar.
-=======
->>>>>>> 24bc31577fa0837d9053ef9ca06ec8effb9f82b1
+
 
 ## 📁 Project Structure
 
