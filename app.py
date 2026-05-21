@@ -80,8 +80,11 @@ def preprocess(df, remove_outliers: bool):
         mask = pd.Series([True] * len(df_filtered), index=df_filtered.index)
         for col, thresh in OUTLIER_THRESHOLDS.items():
             if col in df_filtered.columns:
-                z = np.abs(stats.zscore(df_filtered[col].dropna()))
-                z = z.reindex(df_filtered.index, fill_value=0)
+                col_data = df_filtered[col].dropna()
+                z = pd.Series(
+                np.abs(stats.zscore(col_data)),
+                index=col_data.index
+                ).reindex(df_filtered.index, fill_value=0)
                 mask &= z < thresh
         df_filtered = df_filtered[mask]
 

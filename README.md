@@ -45,7 +45,10 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+<<<<<<< HEAD
 Then upload your `data.csv` in the sidebar.
+=======
+>>>>>>> 24bc31577fa0837d9053ef9ca06ec8effb9f82b1
 
 ## 📁 Project Structure
 
