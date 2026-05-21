@@ -105,6 +105,11 @@ def train_and_predict(df, model_name, lasso_features):
         X = X[[c for c in lasso_features if c in X.columns]]
     y = df[TARGET]
 
+    # Drop NaN/inf rows
+    X = X.replace([np.inf, -np.inf], np.nan)
+    valid = X.notna().all(axis=1) & y.notna()
+    X, y = X[valid], y[valid]
+
     split = int(0.8 * len(X))
     X_train, X_test = X.iloc[:split], X.iloc[split:]
     y_train, y_test = y.iloc[:split], y.iloc[split:]
