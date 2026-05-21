@@ -109,6 +109,7 @@ def train_and_predict(df, model_name, lasso_features):
     X = X.replace([np.inf, -np.inf], np.nan)
     valid = X.notna().all(axis=1) & y.notna()
     X, y = X[valid], y[valid]
+    time_col = df["Time"][valid] if "Time" in df.columns else None
 
     split = int(0.8 * len(X))
     X_train, X_test = X.iloc[:split], X.iloc[split:]
@@ -130,11 +131,13 @@ def train_and_predict(df, model_name, lasso_features):
         lin.fit(X_train, y_train)
         xg.fit(X_train, y_train)
         y_pred = 0.5 * lin.predict(X_test) + 0.5 * xg.predict(X_test)
-        return y_test, y_pred, df["Time"].iloc[split:] if "Time" in df else None
+        return y_test, y_pred, time_col.iloc[split:] if time_col is not None else None
+
+
 
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    return y_test, y_pred, df["Time"].iloc[split:] if "Time" in df else None
+    return y_test, y_pred, time_col.iloc[split:] if time_col is not None else None
 
 
 def get_lasso_features(df):
